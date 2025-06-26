@@ -31,17 +31,6 @@ jobs:
         run: |
             ls ${{ github.workspace }}
 
-      # - name: Sign binary
-      #   uses: lando/code-sign-action@v3
-      #   with:
-      #     file: binary.exe
-      #     keylocker-host: https://clientauth.one.digicert.com
-      #     keylocker-api-key: ${{ secrets.KEYLOCKER_API_KEY }}
-      #     keylocker-cert-sha1-hash: ${{ secrets.KEYLOCKER_CERT_SHA1_HASH }}
-      #     keylocker-keypair-alias: ${{ secrets.KEYLOCKER_KEYPAIR_ALIAS }}
-      #     certificate-password: ${{ secrets.WINDOWS_CERT_PASSWORD }}
-      #     certificate-data: ${{ secrets.WINDOWS_CERT_DATA }}
-
       - name: Install DigiCert Client tools from Github Custom Actions marketplace
         uses: digicert/ssm-code-signing@v1.0.1
 
@@ -68,7 +57,7 @@ jobs:
 
       - name: Signing using keypair alias
         run: |
-           smctl sign --keypair-alias ${{ secrets.KEYLOCKER_KEYPAIR_ALIAS }} --input binary.exe --config-file "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\smtools-windows-x64\\pkcs11properties.cfg"
+           smctl sign --keypair-alias ${{ secrets.KEYLOCKER_KEYPAIR_ALIAS }} --input binary.exe
         shell: cmd
 
       - name: upload signed installer
