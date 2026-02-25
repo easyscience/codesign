@@ -11,10 +11,12 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
+          if-no-files-found: error
           name: my-binary
           path: ${{ github.workspace }}\\binary.exe
 
   binary-sign:
+    needs: create-bin
     runs-on: windows-latest
     steps:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
