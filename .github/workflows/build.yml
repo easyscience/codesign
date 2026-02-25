@@ -32,7 +32,7 @@ jobs:
             ls ${{ github.workspace }}
 
       - name: Install DigiCert Client tools from Github Custom Actions marketplace
-        uses: digicert/ssm-code-signing@v1.0.1
+        uses: digicert/code-signing-software-trust-action@v1
 
       - name: Set up certificate
         run: |
@@ -42,7 +42,7 @@ jobs:
       - name: Set variables
         id: variables
         run: |
-          echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+          #  echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
           echo "SM_HOST=${{ secrets.KEYLOCKER_HOST }}" >> "$GITHUB_ENV"
           echo "SM_API_KEY=${{ secrets.KEYLOCKER_API_KEY }}" >> "$GITHUB_ENV"
           echo "SM_CLIENT_CERT_FILE=D:\\Certificate_pkcs12.p12" >> "$GITHUB_ENV"
