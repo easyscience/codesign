@@ -33,8 +33,8 @@ jobs:
         run: |
             ls ${{ github.workspace }}
 
-      - name: Install DigiCert Client tools from Github Custom Actions marketplace
-        uses: digicert/code-signing-software-trust-action@v1
+      # - name: Install DigiCert Client tools from Github Custom Actions marketplace
+      #   uses: digicert/code-signing-software-trust-action@v1
 
       - name: Set up certificate
         run: |
@@ -42,17 +42,17 @@ jobs:
         shell: bash
 
       - name: Setup Software Trust Manager
-          uses: digicert/code-signing-software-trust-action@v1
-          with:
-            simple-signing-mode: true
-            # If the below 2 parameters are supplied, then smctl executable is invoked to attempt the signing.
-            input: binary.exe
-            keypair-alias: key_1369544803
-          env:
-            SM_HOST: ${{ vars.CODESIGN_WIN_KEYLOCKER_HOST }}
-            SM_API_KEY: ${{ secrets.CODESIGN_WIN_KEYLOCKER_API_KEY }}
-            SM_CLIENT_CERT_FILE: D:\\Certificate_pkcs12.p12
-            SM_CLIENT_CERT_PASSWORD: ${{ secrets.CODESIGN_WIN_CERT_P12_PASSWORD }}
+        uses: digicert/code-signing-software-trust-action@v1
+        with:
+          simple-signing-mode: true
+          # If the below 2 parameters are supplied, then smctl executable is invoked to attempt the signing.
+          input: binary.exe
+          keypair-alias: key_1369544803
+        env:
+          SM_HOST: ${{ vars.CODESIGN_WIN_KEYLOCKER_HOST }}
+          SM_API_KEY: ${{ secrets.CODESIGN_WIN_KEYLOCKER_API_KEY }}
+          SM_CLIENT_CERT_FILE: D:\\Certificate_pkcs12.p12
+          SM_CLIENT_CERT_PASSWORD: ${{ secrets.CODESIGN_WIN_CERT_P12_PASSWORD }}
           shell: bash
 
 
