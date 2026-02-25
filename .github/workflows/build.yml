@@ -49,7 +49,7 @@ jobs:
           input: binary.exe
           keypair-alias: key_1369544803
         env:
-          SM_HOST: ${{ vars.CODESIGN_WIN_KEYLOCKER_HOST }}
+          SM_HOST: ${{ secrets.CODESIGN_WIN_KEYLOCKER_HOST }}
           SM_API_KEY: ${{ secrets.CODESIGN_WIN_KEYLOCKER_API_KEY }}
           SM_CLIENT_CERT_FILE: D:\\Certificate_pkcs12.p12
           SM_CLIENT_CERT_PASSWORD: ${{ secrets.CODESIGN_WIN_CERT_P12_PASSWORD }}
